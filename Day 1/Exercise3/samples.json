@@ -1,0 +1,93 @@
+[
+    {
+      "id": 1001,
+      "name": {
+        "firstName": "John",
+        "lastName": "Doe"
+      },
+      "gender": "male",
+      "interests": ["c", "c++"]
+    },
+    {
+      "id": 1002,
+      "name": {
+        "firstName": "Rikesh",
+        "lastName": "Suthar"
+      },
+      "gender": "male",
+      "interests": ["c", "c++"]
+    },
+    {
+      "id": 1003,
+      "name": {
+        "firstName": "Nisha",
+        "lastName": "Singhal"
+      },
+      "gender": "female",
+      "interests": ["node", "react"]
+    },
+    {
+      "id": 1004,
+      "name": {
+        "firstName": "Vinay",
+        "lastName": "Gajjar"
+      },
+      "gender": "male",
+      "interests": ["c", "c++"]
+    },
+    {
+        "id": 1005,
+        "name": {
+          "firstName": "Kalkesh",
+          "lastName": "Chitimelli"
+        },
+        "gender": "male",
+        "interests": ["node", "react"]
+      },
+      {
+        "id": 1006,
+        "name": {
+          "firstName": "Shardul",
+          "lastName": "Gautam"
+        },
+        "gender": "male",
+        "interests": ["java", "c++"]
+      },
+      {
+        "id": 1007,
+        "name": {
+          "firstName": "Madhuvamshi",
+          "lastName": "Sappa"
+        },
+        "gender": "male",
+        "interests": ["c", "python"]
+      },
+      {
+        "id": 1008,
+        "name": {
+          "firstName": "Raghavendra",
+          "lastName": "Chary"
+        },
+        "gender": "male",
+        "interests": ["c", "python"]
+      },
+      {
+        "id": 1009,
+        "name": {
+          "firstName": "Vamshi",
+          "lastName": "Nayak"
+        },
+        "gender": "male",
+        "interests": ["c", "c++"]
+      },
+      {
+        "id": 1010,
+        "name": {
+          "firstName": "Ramya",
+          "lastName": "Vardhan"
+        },
+        "gender": "female",
+        "interests": ["c", "php"]
+      }
+
+  ]
