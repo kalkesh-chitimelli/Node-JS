@@ -3,12 +3,20 @@ import express, { json, urlencoded } from "express";
 import { join } from "path";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
+import "dotenv/config.js";
+
+import mongoose from "mongoose";
 
 import path from "path";
 const __dirname = path.resolve();
 
 import indexRouter from "./routes/index.js";
 import booksRouter from "./routes/books.js";
+import userRouter from "./routes/users.js";
+
+mongoose
+  .connect("mongodb://localhost:27017")
+  .then(() => console.log("Connected!"));
 
 var app = express();
 
@@ -24,6 +32,7 @@ app.use(cookieParser());
 
 app.use("/", indexRouter);
 app.use("/books", booksRouter);
+app.use("/users", userRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

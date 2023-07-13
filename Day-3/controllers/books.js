@@ -3,6 +3,8 @@ import {
   getBookByAuthor,
   deleteBookByAuthor,
   addBook,
+  getBookById,
+  deleteBookById,
 } from "../services/books.js";
 
 const getAllBooksController = async (req, res) => {
@@ -13,6 +15,12 @@ const getAllBooksController = async (req, res) => {
 const getBookByAuthorController = async (req, res) => {
   const { authorName } = req.params;
   const bookFound = await getBookByAuthor(authorName);
+  res.send(bookFound);
+};
+
+const getBookByIdController = async (req, res) => {
+  const { id } = req.params;
+  const bookFound = await getBookById(id);
   res.send(bookFound);
 };
 
@@ -28,9 +36,18 @@ const addBookController = async (req, res) => {
   res.send(listAfterBookAdded);
 };
 
+const deleteBookByIdController = async (req, res) => {
+  const { id } = req.params;
+
+  const listAfterDeleteBook = await deleteBookById(id);
+  res.send(listAfterDeleteBook);
+};
+
 export {
   getAllBooksController,
   getBookByAuthorController,
   deleteBookController,
   addBookController,
+  getBookByIdController,
+  deleteBookByIdController,
 };

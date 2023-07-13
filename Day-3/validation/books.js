@@ -1,6 +1,6 @@
 import { booksSchema } from "../schema/books.js";
 
-const validate = (req, res, next) => {
+const validateBooks = (req, res, next) => {
   const { error } = booksSchema.validate(req.body);
 
   if (error) {
@@ -10,4 +10,4 @@ const validate = (req, res, next) => {
   }
 };
 
-export { validate };
+export { validateBooks };
