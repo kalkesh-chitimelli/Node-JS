@@ -9,13 +9,14 @@ import {
   deleteBookByIdController,
 } from "../controllers/books.js";
 import { validateBooks } from "../validation/books.js";
+import { authenticate } from "../authentication/authentication.js";
 
 var router = Router();
 
 /* GET users listing. */
-router.get("/", getAllBooksController);
-router.get("/author/:authorName", getBookByAuthorController);
-router.get("/:id", getBookByIdController);
+router.get("/", authenticate, getAllBooksController);
+router.get("/author/:authorName", authenticate, getBookByAuthorController);
+router.get("/:id", authenticate, getBookByIdController);
 
 /* DELETE user by ID listing. */
 
