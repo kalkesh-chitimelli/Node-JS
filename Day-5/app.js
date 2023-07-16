@@ -5,18 +5,11 @@ import cookieParser from "cookie-parser";
 import logger from "morgan";
 import "dotenv/config.js";
 
-import mongoose from "mongoose";
-
 import path from "path";
 const __dirname = path.resolve();
 
-import indexRouter from "./routes/index.js";
-import booksRouter from "./routes/books.js";
-import userRouter from "./routes/users.js";
-
-mongoose
-  .connect("mongodb://localhost:27017/test")
-  .then(() => console.log("Connected!"));
+import employeesRouter from "./src/routes/employees.js";
+import departmentsRouter from "./src/routes/department.js";
 
 var app = express();
 
@@ -28,11 +21,10 @@ app.use(logger("dev"));
 app.use(json());
 app.use(urlencoded({ extended: false }));
 app.use(cookieParser());
-//app.use(join(__dirname, "../public"));
+//app.use(join(__dirname, 'public'));
 
-app.use("/", indexRouter);
-app.use("/books", booksRouter);
-app.use("/users", userRouter);
+app.use("/employees/", employeesRouter);
+app.use("/departments/", departmentsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -46,8 +38,6 @@ app.use(function (err, req, res, next) {
   res.locals.error = req.app.get("env") === "development" ? err : {};
 
   // render the error page
-  res.status(err.status || 500);
-  res.render("error");
 });
 
 export default app;

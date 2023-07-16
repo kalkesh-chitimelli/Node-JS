@@ -20,8 +20,8 @@ router.get("/:id", authenticate, getBookByIdController);
 
 /* DELETE user by ID listing. */
 
-router.delete("/:authorName", deleteBookController);
-router.delete("/author/:id", deleteBookByIdController);
+router.delete("/author/:authorName", deleteBookController);
+router.delete("/:id", deleteBookByIdController);
 
 /* ADD user by post listing. */
 
