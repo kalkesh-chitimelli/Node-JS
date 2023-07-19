@@ -1,5 +1,6 @@
-import { readFile } from "node:fs";
+//import { readFile } from "node:fs/promises";
 import { createServer } from "node:http";
+import { readFile } from "node:fs";
 
 createServer(function (req, res) {
   readFile("users.json", function (err, data) {
@@ -8,3 +9,10 @@ createServer(function (req, res) {
     return res.end();
   });
 }).listen(6060);
+
+// const getBooks = async () => {
+//   const books = await readFile("users.json");
+//   console.log(JSON.parse(books));
+// };
+
+// getBooks();

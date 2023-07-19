@@ -47,7 +47,7 @@ export const getEmployeeByIdService = async (id) => {
   }
 };
 
-export const getEmployeePaginationService = async (page) => {
+export const getEmployeePaginationService = async (page = 1) => {
   try {
     const recordsPerPage = 4;
     const offset = getOffset(page, recordsPerPage);
@@ -56,7 +56,7 @@ export const getEmployeePaginationService = async (page) => {
                 join dept_emp de on e.emp_no = de.emp_no
                 join departments d on de.dept_no = d.dept_no
                 join titles t on t.emp_no = e.emp_no
-                order by Age asc LIMIT ${offset},${recordsPerPage}`);
+                order by Age LIMIT ${offset},${recordsPerPage}`);
 
     if (!employees[0]) {
       throw new Error("No Record Found");
