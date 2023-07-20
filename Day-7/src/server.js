@@ -1,31 +1,46 @@
 import express from "express";
-const app = express();
-import http from "http";
-const server = http.createServer(app);
+import { createServer } from "http";
 import { Server } from "socket.io";
+const app = express();
+const server = createServer(app);
 const io = new Server(server);
-const users = [];
+const PORT = 3000;
+// Store active users and their corresponding sockets
+const activeUsers = {};
+// Handle incoming socket connections
+
 app.get("/", (req, res) => {
   res.sendFile("/Users/Kalkeshc/Desktop/Node JS/Day-7/src" + "/index.html");
 });
-
 io.on("connection", (socket) => {
-  socket.on("new-user", (name) => {
-    users.push(name);
-    console.log(users);
-    socket.broadcast.emit("user-connected", name);
+  console.log("A user connected");
+  // Handle user login and add them to activeUsers
+  socket.on("login", (username) => {
+    activeUsers[socket.id] = username;
+    io.emit("active-users", Object.values(activeUsers));
   });
-  socket.on("send-chat-message", (message) => {
-    socket.broadcast.emit("chat-message", {
-      message: message,
-      name: users[socket.id],
-    });
+  // Handle incoming private messages
+  socket.on("private-message", (data) => {
+    const recipientSocketId = Object.keys(activeUsers).find(
+      (socketId) => activeUsers[socketId] === data.recipient
+    );
+    if (recipientSocketId) {
+      // Send the private message to the recipient
+      io.to(recipientSocketId).emit("private-message", {
+        sender: activeUsers[socket.id],
+        message: data.message,
+      });
+    }
   });
+  // Handle disconnection and remove the user from activeUsers
   socket.on("disconnect", () => {
-    socket.broadcast.emit("user-disconnected", users[socket.id]);
-    delete users[socket.id];
+    if (activeUsers[socket.id]) {
+      delete activeUsers[socket.id];
+      io.emit("active-users", Object.values(activeUsers));
+      console.log("A user disconnected");
+    }
   });
 });
-server.listen(3000, () => {
-  console.log("listening on *:3000");
+server.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
 });
